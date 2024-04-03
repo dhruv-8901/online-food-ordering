@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Easty | Registration</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link rel="stylesheet" href="../../web/registration/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://intl-tel-input.com/node_modules/intl-tel-input/build/css/intlTelInput.css?1549804213570"
+    />
+  </head>
+
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="nine">
+      <h1>Easty<span>Taste for life</span></h1>
+    </div>
+    <div class="form-wizard">
+      <div class="steps">
+        <ul>
+          <li>
+            <span>1</span>
+            Phone Verification
+          </li>
+          <li>
+            <span>2</span>
+            Restaurant Info
+          </li>
+          <li>
+            <span>3</span>
+            Restaurant Timing
+          </li>
+          <!-- <li>
+          <span>4</span>
+          Finish
+        </li> -->
+        </ul>
+      </div>
+      <div class="myContainer">
+        <div class="form-container animated">
+          <h2 class="text-center form-title">Phone Verification</h2>
+          <form id="1st">
+            <div class="form-group">
+              <!-- <label for="">Telephone</label> -->
+              <input
+                type="tel"
+                id="phone"
+                placeholder="e.g. +1 702 123 4567"
+                value="+1"
+                oninput="this.value = this.value.replace(/[^0-9. , +]/g, '').replace(/(\..*)\./g, '$1');"
+              />
+              <!-- <input
+                type="tel"
+                id="phone"
+                placeholder="e.g. +1 702 123 4567"
+                value="+1 "
+              /> -->
+              <!-- <input id="phone" type="text" placeholder="Phone number" /> -->
+            </div>
+            <div class="form-group" id="phone-error" style="color: red"></div>
+            <center>
+              <input
+                id="send-otp"
+                type="button"
+                class="btn btn-primary"
+                style="margin-bottom: 10px"
+                value="Send OTP"
+                onclick="submitPhoneNumberAuth()"
+              />
+            </center>
+            <div id="recaptcha-container"></div>
+            <br />
+            <div id="otpsent" style="display: none">
+              <div class="form-group">
+                <input
+                  id="code"
+                  type="text"
+                  placeholder="Verification code"
+                  oninput="this.value = this.value.replace(/[^0-9. , +]/g, '').replace(/(\..*)\./g, '$1');"
+                />
+              </div>
+              <div class="form-group" id="code-error" style="color: red"></div>
+              <center>
+                <input
+                  id="send-otp"
+                  type="button"
+                  class="btn btn-primary"
+                  style="margin-bottom: 10px"
+                  value="Verify OTP"
+                  onclick="submitPhoneNumberAuthCode()"
+                />
+              </center>
+            </div>
+          </form>
+        </div>
+        <div class="form-container animated" id="1">
+          <h2 class="text-center form-title">Restaurant Info</h2>
+          <form id="2nd">
+            <div class="form-group">
+              <input
+                type="text"
+                id="restaurant_name"
+                placeholder="Restaurant Name"
+                required
+              />
+            </div>
+            <div class="form-group" id="rname-error" style="color: red"></div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="restaurant_address_line1"
+                placeholder="Restaurant Address Line 1"
+                required
+              />
+            </div>
+            <div
+              class="form-group"
+              id="raddress-line1-error"
+              style="color: red"
+            ></div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="restaurant_address_line2"
+                placeholder="Restaurant Address Line 2"
+                required
+              />
+            </div>
+            <div
+              class="form-group"
+              id="raddress-line2-error"
+              style="color: red"
+            ></div>
+            <div id="map" style="position: fixed !important"></div>
+            <input type="text" id="latitude" value="21.1702" hidden />
+            <input type="text" id="longitude" value="72.8311" hidden />
+            <label style="margin-top: 10px">Owner Details :-</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="first_name"
+                placeholder="First Name"
+                required
+              />
+            </div>
+            <div class="form-group" id="fname-error" style="color: red"></div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="last_name"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+            <div class="form-group" id="lname-error" style="color: red"></div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="owner_email"
+                placeholder="Email"
+                required
+              />
+              <input type="hidden" name="idToken" id="idToken" />
+            </div>
+            <div class="form-group" id="email-error" style="color: red"></div>
+            <div class="form-group text-center mar-b-0">
+              <!-- <input type="button" value="BACK" class="btn btn-default back">         -->
+              <input
+                type="button"
+                value="NEXT"
+                class="btn btn-primary"
+                id="restaurant-registration"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="form-container animated" id="2">
+          <h2 class="text-center form-title">Restaurant Timing</h2>
+          <form id="3rd">
+            <div class="form-group d-flex justify-content-between">
+              <div>Opens At :- <input type="time" id="opensAt" /></div>
+              <div>
+                Closes At :-
+                <input type="time" id="closesAt" />
+              </div>
+            </div>
+            <div class="form-group" id="rtime-error" style="color: red"></div>
+
+            <div class="form-group">
+              <label>Opening days :-</label>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="monday"
+                  name="days"
+                  value="0"
+                />
+                <label for="monday">Monady</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="tuesday"
+                  name="days"
+                  value="1"
+                />
+                <label for="tuesday">Tuesday</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="wednesday"
+                  name="days"
+                  value="2"
+                />
+                <label for="wednesday">Wednesday</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="thursday"
+                  name="days"
+                  value="3"
+                />
+                <label for="thursday">Thursday</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="friday"
+                  name="days"
+                  value="4"
+                />
+                <label for="friday">Friday</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="saturday"
+                  name="days"
+                  value="5"
+                />
+                <label for="saturday">Saturday</label>
+              </div>
+              <div>
+                <input
+                  class="days"
+                  type="checkbox"
+                  id="sunday"
+                  name="days"
+                  value="6"
+                />
+                <label for="sunday">Sunday</label>
+              </div>
+              <div class="form-group" id="days-error" style="color: red"></div>
+            </div>
+            <div class="form-group">
+              Estimated preparation time :-
+              <!-- <input type="text" placeholder="First Name" /> -->
+              <select id="preparationTime" name="preparationTime">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+            <div class="form-group text-center mar-b-0">
+              <input type="hidden" name="storeId" id="storeId" />
+              <!-- <input type="button" value="BACK" class="btn btn-default back">         -->
+              <input
+                type="button"
+                value="NEXT"
+                class="btn btn-primary"
+                id="restaurant-timing"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="form-container animated" id="3">
+          <h2 class="text-center form-title">Finish</h2>
+          <form>
+            <div class="form-group">
+              <h3 class="text-center">Thanks For Registration!</h3>
+            </div>
+            <div class="form-group text-center mar-b-0">
+              <!-- <input type="button" value="BACK" class="btn btn-default back">  -->
+              <input
+                type="submit"
+                value="Home"
+                class="btn btn-primary submit"
+                onclick="window.location = '/web'"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscuOVJuU_oy5K-9sVb536A6FhxTsK3HM&callback=initMap&libraries=&v=weekly"
+      async
+    ></script> -->
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Geeksforgeeks office
+        const gfg_office = {
+          lat: 21.1702,
+          lng: 72.8311,
+        };
+
+        // Create the map, centered at gfg_office
+        const map = new google.maps.Map(document.getElementById("map"), {
+          // Set the zoom of the map
+          zoom: 17.56,
+          center: gfg_office,
+        });
+
+        var myMarker = new google.maps.Marker({
+          position: new google.maps.LatLng(gfg_office),
+          map: map,
+          draggable: true,
+        });
+
+        google.maps.event.addListener(myMarker, "dragend", function (evt) {
+          document.getElementById("latitude").value = evt.latLng
+            .lat()
+            .toFixed(5);
+          document.getElementById("longitude").value = evt.latLng
+            .lng()
+            .toFixed(5);
+        });
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+    ></script>
+
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../web/registration/js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCg6UC51mUPrJvop252pCcy5vIFHs6atgc",
+        authDomain: "foodorderingapp-d0523.firebaseapp.com",
+        projectId: "foodorderingapp-d0523",
+        storageBucket: "foodorderingapp-d0523.appspot.com",
+        messagingSenderId: "21611617949",
+        appId: "1:21611617949:web:5620f85aa6f9feeb27fe74",
+        measurementId: "G-XDVR7W8NX8",
+      };
+
+      // const firebaseConfig = {
+      //   apiKey: "AIzaSyAscuOVJuU_oy5K-9sVb536A6FhxTsK3HM",
+      //   authDomain: "fir-66f36.firebaseapp.com",
+      //   projectId: "fir-66f36",
+      //   storageBucket: "fir-66f36.appspot.com",
+      //   messagingSenderId: "636624402314",
+      //   appId: "1:636624402314:web:1a93b39309a1b2c589fa73",
+      //   measurementId: "G-VBFFX457BV",
+      // };
+
+      firebase.initializeApp(firebaseConfig);
+
+      // Create a Recaptcha verifier instance globally
+      // Calls submitPhoneNumberAuth() when the captcha is verified
+      window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "normal",
+          // size: "invisible",
+          callback: function (response) {
+            var phoneNumber = document.getElementById("phone").value;
+            // showMessage("OTP Sent Successfully", "1st");
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            // submitPhoneNumberAuth();
+          },
+        }
+      );
+
+      // console.log(window.recaptchaVerifier);
+
+      // This function runs when the 'sign-in-button' is clicked
+      // Takes the value from the 'phoneNumber' input and sends SMS to that phone number
+      function submitPhoneNumberAuth() {
+        var phoneNumber = document.getElementById("phone").value;
+        if (!phoneNumber) {
+          $("#phone-error").text("Phone number is required");
+        } else if (phoneNumber.length < 10) {
+          $("#phone-error").text("Phone number must be at least 10 numbers");
+        } else {
+          $("#phone-error").text("");
+          var appVerifier = window.recaptchaVerifier;
+          firebase
+            .auth()
+            .signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then(function (confirmationResult) {
+              window.confirmationResult = confirmationResult;
+              showMessage("OTP Sent Successfully", "1st");
+              document.getElementById("otpsent").style.display = "block ";
+            })
+            .catch(function (error) {
+              if (error.code === "auth/invalid-phone-number") {
+                showError("Invalid Phone Number", "1st");
+              } else if (error.code === "auth/too-many-requests") {
+                showError(
+                  "Too many attempts have been made on this number , try after some times",
+                  "1st"
+                );
+              } else if (error.code === "auth/captcha-check-failed") {
+                console.log(error);
+                showError(
+                  "Captcha verification failed , please try again",
+                  "1st"
+                );
+              } else {
+                console.log(error);
+                showError(
+                  `${error.message} , please try after sometimes`,
+                  "1st"
+                );
+              }
+            });
+        }
+      }
+
+      // This function runs when the 'confirm-code' button is clicked
+      // Takes the value from the 'code' input and submits the code to verify the phone number
+      // Return a user object if the authentication was successful, and auth is complete
+      function submitPhoneNumberAuthCode() {
+        var code = document.getElementById("code").value;
+        if (!code) {
+          $("#code-error").text("Verification code is required");
+        } else {
+          $("#code-error").text("");
+          confirmationResult
+            .confirm(code)
+            .then(function (result) {
+              var user = result.user;
+              $.ajax({
+                url: `/api/v1/phone-verification`,
+                type: "GET",
+                data: { idToken: user.ra },
+              })
+                .then((result) => {
+                  if (!result.userExist) {
+                    document.getElementById("idToken").value = user.ra;
+                    nextStep(1);
+                  } else {
+                    if (result.completedStep === 1) {
+                      document.getElementById("storeId").value = result.id;
+                      nextStep(1);
+                      nextStep(2);
+                    } else {
+                      showError(
+                        "Acoount already exist with this number.",
+                        "1st"
+                      );
+                    }
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  showError(err.responseJSON.message, "1st");
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+              showError("invalid verification code", "1st");
+            });
+        }
+      }
+
+      //This function runs everytime the auth state changes. Use to verify if the user is logged in
+      // firebase.auth().onAuthStateChanged(function (user) {
+      //   if (user) {
+      //     console.log("USER LOGGED IN");
+      //   } else {
+      //     // No user is signed in.
+      //     console.log("USER NOT LOGGED IN");
+      //   }
+      // });
+
+      function nextStep(step) {
+        $(".steps li").eq(step).addClass("active");
+        $(".form-container").removeClass("active");
+        $(`#${step}`).addClass("active");
+      }
+
+      function showError(message, formNumber) {
+        const html = `<div class="alert alert-danger alert-dismissible err-alert js-alert" id="err-alert">
+                  ${message}
+                </div>`;
+        $(`#${formNumber}`).prepend(html);
+        setTimeout(() => {
+          $(".alert")
+            .fadeTo(500, 0)
+            .slideUp(500, function () {
+              $(this).remove();
+            });
+        }, 2000);
+      }
+
+      function showMessage(message, formNumber) {
+        const html = `<div class="alert alert-success alert-dismissible err-alert js-alert" id="err-alert">
+                  ${message}
+                </div>`;
+        $(`#${formNumber}`).prepend(html);
+        setTimeout(() => {
+          $(".alert")
+            .fadeTo(500, 0)
+            .slideUp(500, function () {
+              $(this).remove();
+            });
+        }, 2000);
+
+        // $(`#${formNumber}`).prepend(html);
+      }
+
+      // setTimeout(function () {
+      //   $(".alert")
+      //     .fadeTo(500, 0)
+      //     .slideUp(500, function () {
+      //       $(this).remove();
+      //     });
+      // }, 2000);
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#restaurant-registration").on("click", function (event) {
+          var restaurant_name = $("#restaurant_name").val();
+          var restaurant_address1 = $("#restaurant_address_line1").val();
+          var restaurant_address2 = $("#restaurant_address_line2").val();
+          var first_name = $("#first_name").val();
+          var last_name = $("#last_name").val();
+          var owner_email = $("#owner_email").val();
+          var latitude = $("#latitude").val();
+          var longitude = $("#longitude").val();
+          var idToken = $("#idToken").val();
+          var isError = 0;
+
+          const body = {
+            restaurant_name,
+            restaurant_address1,
+            restaurant_address2,
+            first_name,
+            last_name,
+            owner_email,
+            latitude,
+            longitude,
+            idToken,
+          };
+
+          if (restaurant_name == "") {
+            $("#rname-error").text("Restaurant name is required");
+            isError = 1;
+          } else {
+            $("#rname-error").text("");
+          }
+
+          if (restaurant_address1 == "") {
+            $("#raddress-line1-error").text(
+              "Restaurant address line 1 is required"
+            );
+            isError = 1;
+          } else {
+            $("#raddress-line1-error").text("");
+          }
+
+          if (restaurant_address2 == "") {
+            $("#raddress-line2-error").text(
+              "Restaurant address line 2 is required"
+            );
+            isError = 1;
+          } else {
+            $("#raddress-line2-error").text("");
+          }
+
+          if (first_name == "") {
+            $("#fname-error").text("First name is required");
+            isError = 1;
+          } else {
+            $("#fname-error").text("");
+          }
+
+          if (last_name == "") {
+            $("#lname-error").text("Last name is required");
+            isError = 1;
+          } else {
+            $("#lname-error").text("");
+          }
+
+          if (owner_email == "") {
+            $("#email-error").text("Email is required");
+            isError = 1;
+          } else {
+            if (isValidEmailAddress(owner_email)) {
+              $("#email-error").text("");
+            } else {
+              $("#email-error").text("Email must be valid email");
+              isError = 1;
+            }
+          }
+
+          function isValidEmailAddress(emailAddress) {
+            var pattern = new RegExp(
+              /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+            );
+            return pattern.test(emailAddress);
+          }
+
+          if (isError) {
+            event.preventDefault();
+            return false;
+          } else {
+            $.ajax({
+              url: `/web/registration`,
+              type: "POST",
+              data: body,
+            })
+              .then((result) => {
+                if (result.id) {
+                  document.getElementById("storeId").value = result.id;
+                  nextStep(2);
+                } else {
+                  showError("Internal Server Error", "2nd");
+                }
+              })
+              .catch((err) => {
+                console.log(error);
+                showError("Internal Server Error", "2nd");
+              });
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#restaurant-timing").on("click", function (event) {
+          var opensAt = $("#opensAt").val();
+          var closesAt = $("#closesAt").val();
+          var preparationTime = $("#preparationTime").val();
+          var openingDays = [];
+          $.each($("input:checkbox[name='days']:checked"), function () {
+            openingDays.push($(this).val());
+          });
+          var isError = 0;
+
+          const body = {
+            opensAt: opensAt,
+            closesAt: closesAt,
+            preparationTime: preparationTime,
+            openingDays: openingDays,
+            storeId: $("#storeId").val(),
+          };
+
+          if ((opensAt, closesAt == "")) {
+            $("#rtime-error").text("Restaurant timing is required");
+            isError = 1;
+          } else {
+            if (opensAt >= closesAt) {
+              $("#rtime-error").text("Restaurant timing is invalid");
+              isError = 1;
+            } else {
+              $("#rtime-error").text("");
+            }
+          }
+
+          if (openingDays.length <= 0) {
+            $("#days-error").text("Restaurant opening days is required");
+            isError = 1;
+          } else {
+            $("#days-error").text("");
+          }
+
+          if (isError) {
+            event.preventDefault();
+            return false;
+          } else {
+            $.ajax({
+              url: `/web/add-store-timing`,
+              type: "POST",
+              data: JSON.stringify(body),
+              contentType: "application/json",
+            })
+              .then((result) => {
+                if (result.success) {
+                  $(".form-container").removeClass("active");
+                  $(`#3`).addClass("active");
+                }
+              })
+              .catch((err) => {
+                console.log(error);
+                showError("Internal Server Error", "2nd");
+              });
+          }
+        });
+      });
+    </script>
+
+    <script src="https://intl-tel-input.com/node_modules/intl-tel-input/build/js/intlTelInput.js?1549804213570"></script>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="../../web/registration/js/script.js"></script>
+  </body>
+</html>

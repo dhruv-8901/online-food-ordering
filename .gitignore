@@ -1,0 +1,16 @@
+/dist
+/node_modules
+/.env
+/.vscode
+/firebase-adminsdk.json
+/public/store-items
+/public/bankdocument
+/public/user
+/public/restaurants-items
+/public/restaurants-items
+/public/restaurants-user
+
+
+
+
+

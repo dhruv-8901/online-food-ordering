@@ -1,0 +1,520 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>API Changelogs | Food ordering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/favicon.ico"
+    />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <style type="text/css">
+      body {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      .text-muted {
+        color: #8492a6 !important;
+      }
+
+      .bg-light {
+        background-color: #add8e624 !important;
+      }
+
+      ul {
+        list-style-position: outside;
+      }
+
+      .text-success {
+        color: #0f84ab !important;
+      }
+    </style>
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1050.0" data-gr-ext-installed="">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css"
+      integrity="sha256-nwNjrH7J9zS/Ti4twtWX7OsC5QdQHCIKTv5cLMsGo68="
+      crossorigin="anonymous"
+    />
+    <div class="container">
+      <div class="row justify-content-center">
+        <h3 class="pt-2 pb-4 pl-3">Food ordering API Changelogs</h3>
+        <hr />
+        <br />
+        <div>
+          <img
+            class=""
+            src="/admin/assets/images/logos/logo_red.png"
+            width="80"
+            height="55"
+            alt=""
+          />
+          <h5>
+            <span class="badge badge-primary">S</span
+            ><span class="badge">Stores API</span>
+          </h5>
+          <h5>
+            <span class="badge badge-info">C</span
+            ><span class="badge">Customers API</span>
+          </h5>
+          <h5>
+            <span class="badge badge-warning">A</span
+            ><span class="badge">Common API</span>
+          </h5>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12 mx-auto my-auto">
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 30st March 2023 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-secondary">Changes</span>
+              <ul>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores/</code><br />
+                  ✓ Get only stores with pagination
+                </li>
+              </ul>
+              <span class="badge badge-secondary">New Additions</span>
+              <ul>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores/items</code><br />
+                  ✓ Get only store-items with pagination
+                </li>
+              </ul>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /dashboard </code><br />
+                  ✓ Get store, store-items, cuisines data
+                </li>
+              </ul>
+              <span class="badge badge-success">Changes</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /payments/customer-saved-cards </code><br />
+                  ✓ Add card logo in response
+                </li>
+              </ul>
+              <span class="badge badge-success">Changes</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>PUT /users </code><br />
+                  ✓ Add bgImage field for store background image
+                </li>
+              </ul>
+              <span class="badge badge-success">Changes</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  ✓ Add bgImage in store response
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 3rd June 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-secondary">Changes</span>
+              <ul>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /favourites/</code><br />
+                  ✓ Get favourites stores and store items
+                </li>
+              </ul>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /favourites/store-item </code><br />
+                  ✓ Add-Remove favourites store items
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 2nd June 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores/sort </code><br />
+                  ✓ Get Store By Distance Sorting
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 1st June 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /search-history</code><br />
+                  ✓ Get Customer Search History
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /search-history</code><br />
+                  ✓ Add Customer Search History
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 20th May 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>GET /orders/cancel</code><br />
+                  ✓ For Cancel Order
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 17th May 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /stores/orders</code><br />
+                  ✓ Store Order Dashboard
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>PUT /stores/orders</code><br />
+                  ✓ Update Order Status
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /stores/previous-orders</code><br />
+                  ✓ Get All Previous Orders Deatils
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 16th May 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /orders/history</code><br />
+                  ✓ Get Customer Order History
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>GET /orders/{id}</code><br />
+                  ✓ Get Specific Order Details By Id
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /orders</code><br />
+                  ✓ Place Order
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /cart</code><br />
+                  ✓ Get Cart Details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /cart</code><br />
+                  ✓ Add Items In Cart
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 09th May 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /drop-down-list</code><br />
+                  ✓ Get All dropdowns and their options
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 03th May 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores/search</code><br />
+                  ✓ Global search for store, store-items and cuisines
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores-items/{cuisineId}</code><br />
+                  ✓ Get store items by cuisine id
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 22th April 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /feedback</code><br />
+                  ✓ Add feedback
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>GET /feedback/{storeId}</code><br />
+                  ✓ Get store feedbacks
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores/{storeId}/stores-items</code><br />
+                  ✓ Get store items details
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 29th March 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /stores-timing</code><br />
+                  ✓ store timing details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /stores-timing</code><br />
+                  ✓ Update store timing details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>GET /stores-items</code><br />
+                  ✓ store items details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>POST /stores-items</code><br />
+                  ✓ Add store items details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>PUT /stores-items/{id}</code><br />
+                  ✓ Update store items details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-primary">S</span>
+                  <code>DELETE /stores-items/{id}</code><br />
+                  ✓ Delete store items
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 23rd Feb 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /stores</code><br />
+                  ✓ Get store list (Customer Dashboard Screen)
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /favourites/stores</code><br />
+                  ✓ Get favourites stores
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /favourites/stores</code><br />
+                  ✓ Add-Remove favourites store
+                </li>
+              </ul>
+              <span class="badge badge-secondary">Changes</span>
+              <ul>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /addresses</code><br />
+                  ✓ Added <strong>isDefault</strong> to display default selected
+                  address.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-lg-2">
+              <h5 class="mt-4"><b> 18th Feb 2022 </b></h5>
+            </div>
+            <div class="col-lg-10 saprater">
+              <h6 class="mt-4">
+                <span class="p-2 bg-light shadow rounded text-success"
+                  >Version 1.0</span
+                >
+              </h6>
+              <span class="badge badge-success">New Additions</span>
+              <ul class="mt-2">
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>POST /login-with-phone</code><br />
+                  ✓ Register & Login
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>GET /users</code><br />
+                  ✓ Get login user details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>PUT /users</code><br />
+                  ✓ Update user details
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-warning">A</span>
+                  <code>GET /users/logout</code><br />
+                  ✓ Logout user
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>GET /addresses</code><br />
+                  ✓ Get addresses
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>POST /addresses</code><br />
+                  ✓ Add address
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>PUT /addresses/{addressId}</code><br />
+                  ✓ Update address
+                </li>
+                <li class="text-muted ml-3 mb-2">
+                  <span class="badge badge-info">C</span>
+                  <code>DELETE /addresses/{addressId}</code><br />
+                  ✓ Delete address
+                </li>
+                <li class="text-muted ml-3">
+                  <span class="badge badge-info">C</span>
+                  Initial Released: Auth flow
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

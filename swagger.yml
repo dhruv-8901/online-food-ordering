@@ -1,0 +1,2917 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: https://api.server.test/v1
+
+components:
+  securitySchemes:
+    bearerAuth:
+      description: "#### Example: Bearer [TOKEN]"
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    addressResponse:
+      type: object
+      properties:
+        addressId:
+          type: number
+          example: 1
+        addressLine1:
+          type: string
+          example: 356, 4TH  FLOOR
+        addressLine2:
+          type: string
+          example: PARK AVENUE, NEAR PARK
+        addressType:
+          type: string
+          example: home
+        isDefault:
+          type: boolean
+          example: false
+        latitude:
+          type: number
+          example: "21.1702"
+        longitude:
+          type: number
+          example: "72.8311"
+    storeResponse:
+      type: object
+      properties:
+        storeId:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: dhruv
+        email:
+          type: string
+          example: dhruv@mailinator.com
+        phone:
+          type: string
+          example: +919090908070
+        profileImage:
+          type: string
+          example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+        isFavourite:
+          type: boolean
+          example: true
+        avgRating:
+          type: number
+          example: 5
+        totalRating:
+          type: number
+          example: 3
+    storeItemResponse:
+      type: object
+      properties:
+        storeItemId:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: pizza
+        description:
+          type: string
+          example: It's good test
+        price:
+          type: number
+          example: 55.55
+        category:
+          type: number
+          example: 2
+        image:
+          type: string
+          example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+        isSpecial:
+          type: boolean
+          example: true
+        cuisines:
+          type: array
+          items:
+            $ref: "#/components/schemas/cuisineResponse"
+
+    cuisineResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: Fast Food
+    historyItemResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        quantity:
+          type: number
+          example: 30
+        name:
+          type: string
+          example: "Burger"
+        image:
+          type: string
+          example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+        categoryId:
+          type: integer
+          example: 2
+    orderItemResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        quantity:
+          type: number
+          example: 30
+        name:
+          type: string
+          example: "Burger"
+        image:
+          type: string
+          example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+        price:
+          type: number
+          example: 9.5
+        categoryId:
+          type: integer
+          example: 2
+    metaResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 2
+        lastPage:
+          type: integer
+          example: 1
+        perPage:
+          type: integer
+          example: 10
+        currentPage:
+          type: integer
+          example: 1
+        from:
+          type: integer
+          example: 0
+        to:
+          type: integer
+          example: 2
+
+  responses:
+    loginResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  userId:
+                    type: number
+                    example: 1
+                  firstName:
+                    type: string
+                    example: dhruv
+                  lastName:
+                    type: string
+                    example: dhruv
+                  storeName:
+                    type: string
+                    example: ordering
+                  phone:
+                    type: string
+                    example: +919090908070
+                  email:
+                    type: string
+                    example: dhruv@mailinator.com
+                  profileImage:
+                    type: string
+                    example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                  role:
+                    type: integer
+                    example: 1
+                  isDetailsSkip:
+                    type: string
+                    example:
+                  isAddressSkip:
+                    type: string
+                    example:
+                  defaultAddress:
+                    type: object
+                    $ref: "#/components/schemas/addressResponse"
+                  authentication:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkaHJ1dkBnbWFpbC5jb20iLCJ0b2tlbiI6IjEyODQ4NjY5YTJmN2FlNTczNTNhY2U3ZjgwODJhYzI3MDg1ZWYwYzU2NzMyYjhjMDNkOGFhY2ZkY2UzMDIzNzUiLCJpYXQiOjE2NDk4MzA5ODEsImV4cCI6MTY4MTM4ODU4MX0.BwhIAYdO0-N84q3UwxsdYtVBUgsJBfAfGnSyBXcNC9c
+                      refreshToken:
+                        type: string
+                        example: 496005929c15685ca553e1d728bea49dd7472abb6e06d22bb8096f220240f84b
+                      expireAt:
+                        type: number
+                        example: 1683097795
+    userResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  userId:
+                    type: number
+                    example: 1
+                  firstName:
+                    type: string
+                    example: dhruv
+                  lastName:
+                    type: string
+                    example: dhruv
+                  storeName:
+                    type: string
+                    example: ordering
+                  phone:
+                    type: string
+                    example: +919090908070
+                  email:
+                    type: string
+                    example: dhruv@mailinator.com
+                  profileImage:
+                    type: string
+                    example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                  role:
+                    type: integer
+                    example: 1
+                  isDetailsSkip:
+                    type: string
+                    example:
+                  isAddressSkip:
+                    type: string
+                    example:
+                  defaultAddress:
+                    type: object
+                    $ref: "#/components/schemas/addressResponse"
+    refreshTokenResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  authentication:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkaHJ1dkBnbWFpbC5jb20iLCJ0b2tlbiI6IjEyODQ4NjY5YTJmN2FlNTczNTNhY2U3ZjgwODJhYzI3MDg1ZWYwYzU2NzMyYjhjMDNkOGFhY2ZkY2UzMDIzNzUiLCJpYXQiOjE2NDk4MzA5ODEsImV4cCI6MTY4MTM4ODU4MX0.BwhIAYdO0-N84q3UwxsdYtVBUgsJBfAfGnSyBXcNC9c
+                      refreshToken:
+                        type: string
+                        example: 496005929c15685ca553e1d728bea49dd7472abb6e06d22bb8096f220240f84b
+                      expireAt:
+                        type: number
+                        example: 1683097795
+    addressResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                $ref: "#/components/schemas/addressResponse"
+    addressListingResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/addressResponse"
+    storeResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  stores:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/storeResponse"
+                  storeItems:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/storeItemResponse"
+                  cuisines:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/cuisineResponse"
+    storeSearchResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/storeResponse"
+
+    storeTimingResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  days:
+                    type: array
+                    items:
+                      type: integer
+                    example: [1, 2, 3]
+                  opensAt:
+                    type: string
+                    example: "01:00:00"
+                  closesAt:
+                    type: string
+                    example: "11:00:00"
+                  preparationTime:
+                    type: integer
+                    example: 20
+    storeItemResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    storeItemId:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: pizza
+                    description:
+                      type: string
+                      example: It's good test
+                    price:
+                      type: number
+                      example: 55.55
+                    category:
+                      type: number
+                      example: 2
+                    image:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    isSpecial:
+                      type: boolean
+                      example: true
+                    cuisines:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/cuisineResponse"
+
+    storeItemByStoreIdResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    storeItemId:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: pizza
+                    description:
+                      type: string
+                      example: It's good test
+                    price:
+                      type: number
+                      example: 55.55
+                    category:
+                      type: number
+                      example: 2
+                    image:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    isSpecial:
+                      type: boolean
+                      example: true
+                    cartQuantity:
+                      type: number
+                      example: 10
+                    cuisines:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/cuisineResponse"
+
+    storeItemByCuisineResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    storeItemId:
+                      type: number
+                      example: 1
+                    storeId:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: dhruv
+                    description:
+                      type: string
+                      example: It's good test
+                    price:
+                      type: number
+                      example: 55.55
+                    category:
+                      type: number
+                      example: 2
+                    profileImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    isSpecial:
+                      type: boolean
+                      example: true
+              meta:
+                type: object
+                $ref: "#/components/schemas/metaResponse"
+    favouritesResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    storeId:
+                      type: number
+                      example: 1
+                    storeName:
+                      type: string
+                      example: La pino
+                    email:
+                      type: string
+                      example: dhruv@mailinator.com
+                    phone:
+                      type: string
+                      example: +919090908070
+                    profileImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+
+              meta:
+                type: object
+                $ref: "#/components/schemas/metaResponse"
+    feedbackResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    feedbackId:
+                      type: number
+                      example: 1
+                    userId:
+                      type: number
+                      example: 1
+                    profileImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    rating:
+                      type: number
+                      example: 1
+                    review:
+                      type: string
+                      example: Awesome Food
+              totalReview:
+                type: number
+                example: 5
+              avgReview:
+                type: number
+                example: 2.5
+              meta:
+                type: object
+                $ref: "#/components/schemas/metaResponse"
+    cartResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  item:
+                    type: array
+                    items:
+                      properties:
+                        storeIemId:
+                          type: number
+                          example: 1
+                        customerId:
+                          type: number
+                          example: 1
+                        storeId:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: pizza
+                        categoryId:
+                          type: integer
+                          example: 2
+                        image:
+                          type: string
+                          example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                        price:
+                          type: number
+                          example: 55.55
+                        quantity:
+                          type: number
+                          example: 2
+                  store:
+                    type: object
+                    properties:
+                      storeName:
+                        type: string
+                        example: star
+                      profileImage:
+                        type: string
+                        example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                      totalRating:
+                        type: number
+                        example: 2
+                      avgRating:
+                        type: number
+                        example: 2
+                  payment:
+                    type: object
+                    properties:
+                      itemTotal:
+                        type: number
+                        example: 56.52
+                      taxes:
+                        type: number
+                        example: 0.57
+                      grandTotal:
+                        type: number
+                        example: 57.09
+    orderResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    orderId:
+                      type: number
+                      example: 1
+                    orderNumber:
+                      type: string
+                      example: 165268511607373166
+                    status:
+                      type: number
+                      example: 0
+                    storeName:
+                      type: string
+                      example: Delicious
+                    storeImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    customer:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                          example: 91.1702
+                        longitude:
+                          type: number
+                          example: 12.8311
+                        addressLine1:
+                          type: string
+                          example: 356, 4Th Floor
+                        addressLine2:
+                          type: string
+                          example: AVENUE, NEAR PARK
+                        firstName:
+                          type: string
+                          example: Tom
+                        lastName:
+                          type: string
+                          example: Jerry
+                        phone:
+                          type: string
+                          example: "+911652685116"
+                    orderTime:
+                      type: number
+                      example: 1652685116
+                    total:
+                      type: number
+                      example: 2826
+                    taxes:
+                      type: number
+                      example: 28.26
+                    grandTotal:
+                      type: number
+                      example: 2854.26
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/orderItemResponse"
+    orderHistoryResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    orderId:
+                      type: number
+                      example: 1
+                    orderNumber:
+                      type: string
+                      example: 165268511607373166
+                    storeName:
+                      type: string
+                      example: Delicious
+                    storeImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+                    storeAddress:
+                      type: string
+                      example: AVENUE, NEAR PARK
+                    status:
+                      type: number
+                      example: 0
+                    orderTime:
+                      type: number
+                      example: 1652685116
+                    grandTotal:
+                      type: number
+                      example: 55.55
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/historyItemResponse"
+              meta:
+                type: object
+                $ref: "#/components/schemas/metaResponse"
+    storeOrderResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    orderId:
+                      type: number
+                      example: 1
+                    orderNumber:
+                      type: string
+                      example: 165268511607373166
+                    status:
+                      type: number
+                      example: 0
+                    orderTime:
+                      type: number
+                      example: 1652685116
+                    grandTotal:
+                      type: number
+                      example: 55.55
+                    customer:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                          example: 91.1702
+                        longitude:
+                          type: number
+                          example: 12.8311
+                        addressLine1:
+                          type: string
+                          example: 356, 4Th Floor
+                        addressLine2:
+                          type: string
+                          example: AVENUE, NEAR PARK
+                        firstName:
+                          type: string
+                          example: Tom
+                        lastName:
+                          type: string
+                          example: Jerry
+                        phone:
+                          type: string
+                          example: "+911652685116"
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/historyItemResponse"
+              meta:
+                type: object
+                $ref: "#/components/schemas/metaResponse"
+    updateOrderResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    orderId:
+                      type: number
+                      example: 1
+                    orderNumber:
+                      type: string
+                      example: 165268511607373166
+                    status:
+                      type: number
+                      example: 0
+                    orderTime:
+                      type: number
+                      example: 1652685116
+                    grandTotal:
+                      type: number
+                      example: 55.55
+                    customer:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                          example: 91.1702
+                        longitude:
+                          type: number
+                          example: 12.8311
+                        addressLine1:
+                          type: string
+                          example: 356, 4Th Floor
+                        addressLine2:
+                          type: string
+                          example: AVENUE, NEAR PARK
+                        firstName:
+                          type: string
+                          example: Tom
+                        lastName:
+                          type: string
+                          example: Jerry
+                        phone:
+                          type: string
+                          example: "+911652685116"
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/historyItemResponse"
+    searchHistoryResponse:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  properties:
+                    type:
+                      type: number
+                      example: 1
+                    searchId:
+                      type: number
+                      example: 2
+                    storeItemId:
+                      type: number
+                      example: null
+                    storeItemName:
+                      type: string
+                      example: null
+                    storeItemImage:
+                      type: string
+                      example: null
+                    storeId:
+                      type: number
+                      example: 3
+                    storeName:
+                      type: number
+                      example: 4
+                    storeImage:
+                      type: string
+                      example: http://localhost:5008/stores-user/d4bb70d3-48d3-46b4-b0d5-1a0077fe6187.png
+
+    400Response:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                example: Bad Request Error
+    401Response:
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                example: Unauthorized
+    404Response:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                example: Not Found
+    409Response:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                example: Conflict Error
+    422Response:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                example: validation error
+
+paths:
+  /login-with-phone:
+    post:
+      summary: Register / Login [customer,store]
+      description: |
+        | role        | Meaning           |
+        | ------------- |:-------------:|
+        | ***Customer***      | 1 |
+        | ***store***      | 2 |
+
+        <b>isApproved For Store</b> 	1 = Approved, 2 = Reject , 3 = Pending ;<br><br> <b>profileStatus For Store</b>  1 = stepOne, 2 = stepTwo , 3 = stepThree ; <br><br> <b>isPaymentDetails	For Store</b> 1 = Approved, 2 = details Required , 3 = Pending	; <br><br>
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idToken:
+                  type: string
+                  example: eyJhbGciOiJSUzI1NiIsImtpZCI6ImMxMGM5MGJhNGMzNjYzNTE2ZTA3MDdkMGU5YTg5NDgxMDYyODUxNTgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbW9udGFnZS1wcm8tZjVlOTAiLCJhdWQiOiJtb250YWdlLXByby1mNWU5MCIsImF1dGhfdGltZSI6MTY0MzcwOTg4MywidXNlcl9pZCI6IlFpYmNoZlhiY1VZeDZhZmdWTERUd2RoZlJoSzIiLCJzdWIiOiJRaWJjaGZYYmNVWXg2YWZnVkxEVHdkaGZSaEsyIiwiaWF0IjoxNjQzNzA5OTIwLCJleHAiOjE2NDM3MTM1MjAsInBob25lX251bWJlciI6Iis5MTk4MzMzMjg3OTgiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTk4MzMzMjg3OTgiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.Whx09-UzCIrrsIWwhI7z4BmwmaayYtn3T4q5hlbehlHRwARIxvy6npO2KyjlAAmR1u91iVdcSAKfw3gcHNy5XiaXn5UOJnMaibWPAuJE3YICWARPZrMBvLsfD5QL1BZfmZVKajvS_9o4wt8FWaywzJZIbWRrApJ9dfQwVs8qUjDiy7B6mkFYlaENoCPfi9PwFjU64OVC7b5cGICJj1dd8WRN87247kTlLKouRkxeoeE6iXgrnAjGakbFNorD6ZFMhC68ny7FGVxii11jbH0jEbCqlzRGfW0iDNn41THBarXjX-cXWYpYgPbIDP4mwBkxZ_1NUlM6U_FDvXutXMHmmA
+                role:
+                  type: integer
+                  example: 1
+              required:
+                - idToken
+      responses:
+        "200":
+          $ref: "#/components/responses/loginResponse"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /refresh-token:
+    post:
+      summary: Refresh token [customer,store]
+      deprecated: false
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+                  example: m4Ot2bGy71yHigCwSMJJKhxLFEBzkp+aXJIsYkRemM7u7L1/1Stmga3wwMHdmTAapOQB6ngprbhJu/QjN8gYdl0KDKGPX9aUPD2Wd0mFeX8=
+      responses:
+        "200":
+          $ref: "#/components/responses/refreshTokenResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This refresh token is expired, please login
+
+  /users:
+    get:
+      summary: Login user details [customer,store]
+      description: |
+        | role        | Meaning           |
+        | ------------- |:-------------:|
+        | ***Customer***      | 1 |
+        | ***store***      | 2 |
+
+        <b>isApproved For Store</b> 	1 = Approved, 2 = Reject , 3 = Pending ;<br><br> <b>profileStatus For Store</b>  1 = stepOne, 2 = stepTwo , 3 = stepThree ; <br><br> <b>isPaymentDetails	For Store</b> 1 = Approved, 2 = details Required , 3 = Pending	; <br><br>
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/userResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+    put:
+      summary: Update user details [customer,store]
+      description: If logged in user store then store name field use for their business name <br> address & lat-long field use only for seller
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: "John"
+                lastName:
+                  type: string
+                  example: "Smith"
+                storeName:
+                  type: string
+                  example: "Smith"
+                email:
+                  type: string
+                  example: "john@gmail.com"
+                idToken:
+                  type: string
+                  example: eyJhbGciOiJSUzI1NiIsImtpZCI6ImMxMGM5MGJhNGMzNjYzNTE2ZTA3MDdkMGU5YTg5NDgxMDYyODUxNTgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbW9udGFnZS1wcm8tZjVlOTAiLCJhdWQiOiJtb250YWdlLXByby1mNWU5MCIsImF1dGhfdGltZSI6MTY0MzcwOTg4MywidXNlcl9pZCI6IlFpYmNoZlhiY1VZeDZhZmdWTERUd2RoZlJoSzIiLCJzdWIiOiJRaWJjaGZYYmNVWXg2YWZnVkxEVHdkaGZSaEsyIiwiaWF0IjoxNjQzNzA5OTIwLCJleHAiOjE2NDM3MTM1MjAsInBob25lX251bWJlciI6Iis5MTk4MzMzMjg3OTgiLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7InBob25lIjpbIis5MTk4MzMzMjg3OTgiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwaG9uZSJ9fQ.Whx09-UzCIrrsIWwhI7z4BmwmaayYtn3T4q5hlbehlHRwARIxvy6npO2KyjlAAmR1u91iVdcSAKfw3gcHNy5XiaXn5UOJnMaibWPAuJE3YICWARPZrMBvLsfD5QL1BZfmZVKajvS_9o4wt8FWaywzJZIbWRrApJ9dfQwVs8qUjDiy7B6mkFYlaENoCPfi9PwFjU64OVC7b5cGICJj1dd8WRN87247kTlLKouRkxeoeE6iXgrnAjGakbFNorD6ZFMhC68ny7FGVxii11jbH0jEbCqlzRGfW0iDNn41THBarXjX-cXWYpYgPbIDP4mwBkxZ_1NUlM6U_FDvXutXMHmmA
+                profileImage:
+                  type: string
+                  format: binary
+                bgImage:
+                  type: string
+                  format: binary
+                storeCountryCode:
+                  type: string
+                  example: "+1"
+                storeContactNumber:
+                  type: string
+                  example: "8568568561"
+                isDetailsSkip:
+                  type: boolean
+                  example: true
+                isAddressSkip:
+                  type: boolean
+                  example: true
+                addressLine1:
+                  type: string
+                  example: 356, 4TH  FLOOR
+                addressLine2:
+                  type: string
+                  example: PARK AVENUE, NEAR PARK
+                latitude:
+                  type: integer
+                  example: 21.1702
+                longitude:
+                  type: integer
+                  example: 72.8311
+      responses:
+        "200":
+          $ref: "#/components/responses/userResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /users/logout:
+    get:
+      summary: Logout user [customer,store]
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Logout successfully.
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /addresses:
+    get:
+      summary: Get addresses [customer]
+      description: "addressType : home, office, other"
+      tags:
+        - Address
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/addressListingResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+    post:
+      summary: Add address [customer]
+      description: "addressType : home, office, other"
+      tags:
+        - Address
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                  example: 356, 4TH  FLOOR
+                addressLine2:
+                  type: string
+                  example: PARK AVENUE, NEAR PARK
+                addressType:
+                  type: string
+                  example: home
+                latitude:
+                  type: integer
+                  example: 21.1702
+                longitude:
+                  type: integer
+                  example: 72.8311
+              required:
+                - addressLine1
+                - addressLine2
+                - addressType
+                - latitude
+                - longitude
+      responses:
+        "200":
+          $ref: "#/components/responses/addressResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /addresses/{addressId}:
+    put:
+      summary: Update address [customer]
+      description: "addressType : home, office, other"
+      tags:
+        - Address
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "addressId"
+          in: "path"
+          description: "ID of address for update"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                  example: 356, 4TH  FLOOR
+                addressLine2:
+                  type: string
+                  example: PARK AVENUE, NEAR PARK
+                addressType:
+                  type: string
+                  example: home
+                latitude:
+                  type: integer
+                  example: 21.1702
+                longitude:
+                  type: integer
+                  example: 72.8311
+                isDefault:
+                  type: string
+                  example: false
+              required:
+                - addressLine2
+                - addressLine1
+                - addressType
+                - latitude
+                - longitude
+                - isDefault
+      responses:
+        "200":
+          $ref: "#/components/responses/addressResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+    delete:
+      summary: Delete address [customer]
+      description: "addressType : home, office, other"
+      tags:
+        - Address
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "addressId"
+          in: "path"
+          description: "ID of address for update"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: address deleted successfully.
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+
+  /store-timing:
+    get:
+      summary: store timing details [store]
+      description: |
+        | Parameter        | Meaning           |
+        | ------------- |:-------------:|
+        | ***SUN***      | 0 |
+        | ***MON***      | 1 |
+        | ***TUE***      | 2 |
+        | ***WED***      | 3 |
+        | ***THU***      | 4 |
+        | ***FRI***      | 5 |
+        | ***SAT***      | 6 |
+      tags:
+        - Store Timing
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/storeTimingResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+    put:
+      summary: Update store timing details [store]
+      description: |
+        | Parameter        | Meaning           |
+        | ------------- |:-------------:|
+        | ***SUN***      | 0 |
+        | ***MON***      | 1 |
+        | ***TUE***      | 2 |
+        | ***WED***      | 3 |
+        | ***THU***      | 4 |
+        | ***FRI***      | 5 |
+        | ***SAT***      | 6 |
+
+      tags:
+        - Store Timing
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                days:
+                  type: array
+                  items:
+                    type: integer
+                  example: [1, 2, 3]
+                opensAt:
+                  type: string
+                  example: "01:00:00"
+                closesAt:
+                  type: string
+                  example: "05:00:00"
+                preparationTime:
+                  type: integer
+                  example: 20
+              required:
+                - days
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /dashboard:
+    get:
+      summary: dashboard [customer]
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/storeResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores:
+    get:
+      summary: store lists [customer]
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/storeResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores/items:
+    get:
+      summary: store lists [customer]
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/storeResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores/search:
+    get:
+      summary: store lists [customer]
+      description: |
+        | Filter        | Meaning           |
+        | ------------- |:-------------:|
+        | ***distance***      | 0 |
+        | ***fastest***      | 1 |
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: integer
+            enum: [0, 1]
+            example: 0
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores/sort:
+    get:
+      summary: store sorting list by distance [customer]
+      description: |
+        | Filter        | Meaning           |
+        | ------------- |:-------------:|
+        | ***distance***      | 0 |
+        | ***fastest***      | 1 |
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      deprecated: false
+      parameters:
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: number
+            enum: [0, 1]
+            example: 0
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/storeResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores/{storeId}/stores-items:
+    get:
+      summary: store items details [customer]
+      description: If you pass <b>storeItemId</b>, you will get <b>specific details of items</b> or not pass any key then get <b>all items of stores</b>.<br> If you pass <b>isSpecial(boolean)</b>, you will get <b>special items</b> of restaurent.
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "storeId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "storeItemId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "isSpecial"
+          in: "query"
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemByStoreIdResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /stores/popular:
+    get:
+      summary: popular store lists [customer]
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/storeResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /store-items/{cuisineId}:
+    get:
+      summary: Get store item by cuisine id [customer]
+      tags:
+        - Stores
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "cuisineId"
+          in: "path"
+          description: "Cuisine Id"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+            example: 1
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemByCuisineResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /store-items:
+    get:
+      summary: Store items details [store]
+      description: If you pass <b>storeItemId</b>, you will get <b>specific details of items</b> or not pass any key then get <b>all items of stores</b>.<br> If you pass <b>isSpecial(boolean)</b>, you will get <b>special items</b> of stores.
+      tags:
+        - Store Items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "storeItemId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        # - name: "isSpecial"
+        #   in: "query"
+        #   required: false
+        #   schema:
+        #     type: boolean
+        #     default: false
+
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+    post:
+      summary: Add Store item [store]
+      description: |
+        | category              | Meaning           |
+        | -------------         |:-------------:|
+        | ***Veg***             | 1 |
+        | ***Non-Veg***         | 2 |
+        | ***Vegan***           | 3 |
+
+        If you want to add special item then you select <b>isSpecial true</b> , you will get passed <b>valid_from And valid_until</b> For add special item.
+      tags:
+        - Store Items
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "pizza"
+                description:
+                  type: string
+                  example: "It's good test"
+                image:
+                  type: string
+                  format: binary
+                price:
+                  type: string
+                  example: 56.52
+                cuisineIds:
+                  type: integer
+                  example: "4,5,6"
+                categoryId:
+                  type: integer
+                  format: enum
+                  enum: [1, 2, 3]
+                isSpecial:
+                  type: boolean
+                  default: false
+                valid_from:
+                  type: string
+                  example: 1655295241
+                valid_until:
+                  type: string
+                  example: 1655438542
+              required:
+                - name
+                - description
+                - image
+                - price
+                - categoryId
+                - isSpecial
+                - cuisineIds
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Item added successfully.
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /store-items/{id}:
+    put:
+      summary: Update store item [store]
+      tags:
+        - Store Items
+      description: You Cannot Update <b>Special Item</b>.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Id of store item"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+            example: 1
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "pizza"
+                description:
+                  type: string
+                  example: "It's good test"
+                image:
+                  type: string
+                  format: binary
+                price:
+                  type: integer
+                  example: 56.52
+                cuisineIds:
+                  type: integer
+                  example: "1,2,3"
+                categoryId:
+                  type: string
+                  enum: [1, 2, 3]
+
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+    delete:
+      summary: Delete store items [store]
+      description: delete single or multiple item of store.
+      tags:
+        - Store Items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: string
+            example: "1,2,3"
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Item deleted successfully.
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /store-items/previous-specials:
+    get:
+      summary: Special Items details [store]
+      description: If you pass <b>storeItemId</b>, you will get <b>specific details of items</b> or not pass any key then get <b>all items of stores</b>.<br> If you pass <b>isSpecial(boolean)</b>, you will get <b>special items</b> of stores.
+      tags:
+        - Special Items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "storeItemId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+
+      responses:
+        "200":
+          $ref: "#/components/responses/storeItemResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /store-items/reuse-previous-specials:
+    post:
+      summary: Reuse Previous Special store item [store]
+      tags:
+        - Special Items
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeItemId:
+                  type: integer
+                  example: 1
+                valid_from:
+                  type: string
+                  example: 1655295241
+                valid_until:
+                  type: string
+                  example: 1655438542
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: SpecialItem Reuse Successfully.
+                  data:
+                    type: boolean
+                    example: true
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+
+  /search-history:
+    get:
+      summary: search history list [customer]
+      tags:
+        - Search
+      description: " - **type: 1 => Store 2 => StoreItem**"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/searchHistoryResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+    post:
+      summary: search result [customer]
+      tags:
+        - Search
+      description: " - Either pass **storeId** or **storeItemId**\n\n - If both are passed then **storeId** will take precedent over\n\n - type: 1 => Search Store, 2 => Search Store Item"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId:
+                  type: number
+                  example: 0
+                storeItemId:
+                  type: number
+                  example: 0
+                type:
+                  type: number
+                  example: 0
+      responses:
+        "200":
+          $ref: "#/components/responses/searchHistoryResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "400":
+          $ref: "#/components/responses/400Response"
+
+  /cart:
+    get:
+      summary: Get Cart Details [customer]
+      tags:
+        - Cart
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/cartResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+    post:
+      summary: Add to cart item [customer]
+      tags:
+        - Cart
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeItemId:
+                  type: number
+                  example: 1
+                quantity:
+                  type: number
+                  example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /cart/isCartExist:
+    get:
+      summary: Check Cart Alredy Exist Or Not  [customer]
+      tags:
+        - Cart
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "storeId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replaceCart:
+                    type: boolean
+                    example: true
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /orders:
+    post:
+      summary: Place order [customer]
+      tags:
+        - Orders
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addressId:
+                  type: number
+                  example: 1
+                cardId:
+                  type: string
+                  example: card_1LFC36Cwocdu61MQK2SMnx8u
+                orderingInstruction:
+                  type: string
+                  example: "Don’t Ring The Door Bell."
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      orderId:
+                        type: number
+                        example: 30
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /orders/{id}:
+    get:
+      summary: Get specific Order Details [customer,store]
+      tags:
+        - Orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/orderResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /orders/cancel:
+    post:
+      summary: Cancel order [customer,store]
+      tags:
+        - Orders
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: number
+                  example: 10
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Order Cancel Succesfully
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /orders/history:
+    get:
+      summary: Get Order History [customer]
+      tags:
+        - Orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/orderHistoryResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /orders/reorder:
+    post:
+      summary: Reorder [customer]
+      tags:
+        - Orders
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: number
+                  example: 10
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/add-new-card:
+    post:
+      summary: Add New Card [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_holder_name:
+                  type: string
+                  example: king
+                cardNumber:
+                  type: number
+                  example: 4242424242424242
+                cardExpMonth:
+                  type: number
+                  example: 02
+                cardExpYear:
+                  type: number
+                  example: 2023
+                cvc:
+                  type: number
+                  example: 259
+                isDefault:
+                  type: boolean
+                  example: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/customer-saved-cards:
+    get:
+      summary: Get All Saved Card Details By Customer ID [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/card/{cardId}:
+    put:
+      summary: Update Card By Card ID [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+            example:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_holder_name:
+                  type: string
+                  example: king
+                cardExpMonth:
+                  type: number
+                  example: 02
+                cardExpYear:
+                  type: number
+                  example: 2023
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+    delete:
+      summary: Delete Card By Card ID [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+            example:
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/create-charges:
+    post:
+      summary: create charges [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  example: 499
+                cardId:
+                  type: string
+                  example: card_1L3CzzLnxReeCmmUQINFe8XT
+                customerId:
+                  type: string
+                  example: cus_LkiQFTqGxIYure
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/update-pending-order-payment:
+    post:
+      summary: update pending order payment [customer]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: number
+                  example: 20
+                cardId:
+                  type: string
+                  example: card_1L3CzzLnxReeCmmUQINFe8XT
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/create-seller-account:
+    post:
+      summary: create seller account [Store]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account_holder_name:
+                  type: string
+                  example: Rocky Bhai
+                routing_number:
+                  type: string
+                  example: 110000000
+                account_number:
+                  type: string
+                  example: "000999999991"
+                confirm_account_number:
+                  type: string
+                  example: "000999999991"
+                bank_document:
+                  type: string
+                  format: binary
+              # required:
+              #   - account_holder_name
+              #   - routing_number
+              #   - account_number
+              #   - confirm_account_number
+              #   - bank_document
+
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/store-bankaccount-info:
+    get:
+      summary: Get Store Bank Account Details By Store ID [store]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /payments/account-verification:
+    get:
+      summary: Get Store Payment Account Verifcation Link By Store ID [store]
+      tags:
+        - Payment
+      security:
+        - bearerAuth: []
+      deprecated: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /stores/orders:
+    get:
+      summary: Get Store Order Details [store]
+      description: |
+        | status        | Meaning           |
+        | ------------- |:-------------:|
+        | ***pending***      | 0 |
+        | ***Preparing***      | 2 |
+
+      tags:
+        - Store Orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: status
+          required: true
+          schema:
+            type: string
+            example: 1
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+
+      responses:
+        "200":
+          $ref: "#/components/responses/storeOrderResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+    put:
+      summary: Update Order Details Status [store]
+      description: |
+        | status        | Meaning           |
+        | ------------- |:-------------:|
+        | ***pending***      | 0 |
+        | ***accepted***      | 1 |
+        | ***Reject***      | -1 |
+        | ***Preparing***      | 2 | 
+        | ***On The Way***      | 3 | 
+        | ***Delivered***      | 4 | 
+        | ***Canceled***      | 5 |
+      tags:
+        - Store Orders
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+                - orderId
+              properties:
+                orderId:
+                  type: integer
+                  example: 20
+                status:
+                  type: integer
+                  example: 1
+
+      responses:
+        "200":
+          $ref: "#/components/responses/updateOrderResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /stores/previous-orders:
+    get:
+      summary: Get Previous Order Details [store]
+      tags:
+        - Store Orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+
+      responses:
+        "200":
+          $ref: "#/components/responses/storeOrderResponse"
+        "400":
+          $ref: "#/components/responses/400Response"
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /drop-down-list:
+    get:
+      summary: Get store item by cuisine id [store]
+      tags:
+        - Dropdown
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: "id"
+          in: "query"
+          description: "Id"
+          schema:
+            type: "integer"
+            format: "int64"
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        dropdownId:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: Fast Food
+        "401":
+          $ref: "#/components/responses/401Response"
+  /favourites/:
+    get:
+      summary: Get favourites stores and storeitems [customer]
+      tags:
+        - Favourite
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/favouritesResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /favourites/store:
+    post:
+      summary: Add-Remove favourites stores [customer]
+      tags:
+        - Favourite
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId:
+                  type: integer
+                  example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Store Item added in favourite list.
+                  data:
+                    type: boolean
+                    example: true
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+
+  /favourites/store-item:
+    post:
+      summary: Add-Remove favourites store item [customer]
+      tags:
+        - Favourite
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeItemId:
+                  type: integer
+                  example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Store added in favourite list.
+                  data:
+                    type: boolean
+                    example: true
+        "401":
+          $ref: "#/components/responses/401Response"
+        "404":
+          $ref: "#/components/responses/404Response"
+
+  /feedback:
+    post:
+      summary: Add feedback [customer]
+      tags:
+        - Feedback
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId:
+                  type: integer
+                  example: 1
+                rating:
+                  type: integer
+                  example: 1
+                review:
+                  type: string
+                  example: "Good Food"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+        "401":
+          $ref: "#/components/responses/401Response"
+        "409":
+          $ref: "#/components/responses/409Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /feedback/{storeId}:
+    get:
+      summary: Get stores feedback [customer,store]
+      description: |
+        | status        | Meaning           |
+        | ------------- |:-------------:|
+        | ***most recent***      | 0 |
+        | ***positive first***      | 1 |
+        | ***negative first***      | 2 |
+      tags:
+        - Feedback
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: storeId
+          required: true
+          schema:
+            type: integer
+            example: 1
+        - in: query
+          name: perPage
+          required: false
+          schema:
+            type: string
+            example: 10
+        - in: query
+          name: currentPage
+          required: false
+          schema:
+            type: string
+            example: 1
+        - in: query
+          name: filter
+          required: false
+          schema:
+            type: integer
+            enum: [0, 1, 2]
+      responses:
+        "200":
+          $ref: "#/components/responses/feedbackResponse"
+        "401":
+          $ref: "#/components/responses/401Response"
+
+  /check-version:
+    post:
+      summary: check app version
+      description: "flag = FORCE_UPDATE: 2,OPTIONAL_UPDATE: 1,NO_UPDATE: 0,"
+      tags:
+        - App
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [iOS, Android]
+                appVersion:
+                  type: string
+                  example: "1.0"
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Your app is up to date
+                  status:
+                    type: integer
+                    example: 0
+                  app_link:
+                    type: string
+                    example: ""
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /fcm/token:
+    post:
+      description: Register device token
+      summary: Register device token
+      tags:
+        - FCM
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: def5020075819e4748adefe1f860566c3b41437f2b7e396db025b4d384e6b5db5911a3cfc22
+                deviceId:
+                  type: string
+                  example: e1f860566c3b41437f2b7e
+              required:
+                - token
+                - deviceId
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token added successfully.
+        "401":
+          $ref: "#/components/responses/401Response"
+        "422":
+          $ref: "#/components/responses/422Response"
+
+  /send-push:
+    post:
+      summary: send push notification
+      tags:
+        - FCM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: "cRsDia88QKKUta3kCVq8LH:APA91bHEgyFHXM1K-7biA82LjE5-wIim5xArN6gAF78XMvu6cqwEAQjJZfcZkRNUyjvKYuzAoNsYwUX9EI6t_EMrCHynOIou7peEaZqxw1s9OJQ3JADk4C6X_Q0cnB7txitGTDQKQ-YL"
+                title:
+                  type: string
+                  example: "Hello"
+                message:
+                  type: string
+                  example: "How are you?"
+      responses:
+        "200":
+          description: OK
+
+  # /social/login:
+  #   post:
+  #     summary: Social login without verification
+  #     description: "providerType: facebook, google, apple"
+  #     tags:
+  #       - Social Login
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               firstName:
+  #                 type: string
+  #                 example: "Ankit"
+  #               lastName:
+  #                 type: string
+  #                 example: "Dabhekar"
+  #               email:
+  #                 type: string
+  #                 format: email
+  #                 example: iroidankit@gmail.com
+  #               providerKey:
+  #                 type: string
+  #                 example: "103896957761654283230"
+  #               providerType:
+  #                 type: string
+  #                 enum: [google, facebook, apple]
+  #     responses:
+  #       "200":
+  #         description: OK
+
+  # /oauth/social/login:
+  #   post:
+  #     summary: Social login with authentication
+  #     description: "providerType: facebook, google, apple"
+  #     tags:
+  #       - Social Login
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               token:
+  #                 type: string
+  #                 example: ""
+  #               providerType:
+  #                 type: string
+  #                 enum: [google, facebook, apple]
+  #     responses:
+  #       "200":
+  #         description: OK

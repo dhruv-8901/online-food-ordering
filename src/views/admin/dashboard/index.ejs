@@ -1,0 +1,386 @@
+<%- include('../layouts/header') %>
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row justify-content-between mb-4 align-items-center mt-3">
+      <div class="col-xl-12 text-left"></div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-xxl-12">
+        <div class="row">
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Customers</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= customers %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <i class="fa fa-plus"></i>
+                    6
+                  </span>
+                  <p> Since last month</p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_1"
+                  class="home_chart_widget chart-one"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Orders</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= totalOrders %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <i class="fa fa-plus"></i>
+                    65
+                  </span>
+                  <p> Since last month</p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_2"
+                  class="home_chart_widget chart-two"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Pending Orders</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= pendingOrders %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-danger">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_3"
+                  class="home_chart_widget chart-three"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Completed Orders</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= completeOrders %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_4"
+                  class="home_chart_widget chart-four"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Total Restaurants</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= stores %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_4"
+                  class="home_chart_widget chart-four"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Pending Restaurants</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= pendingStores %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_4"
+                  class="home_chart_widget chart-four"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Approved Restaurants</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= approvedStores %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_4"
+                  class="home_chart_widget chart-four"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card">
+              <div class="card-body pb-0">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h4 class="text-muted mb-3">Rejected Restaurants</h4>
+                  </div>
+                  <div class="col-auto">
+                    <h2><%= rejectStores %></h2>
+                  </div>
+                </div>
+                <!-- <div>
+                  <span class="text-success">
+                    <br>
+                    <br>
+                  </span>
+                  <p> </p>
+                </div> -->
+              </div>
+              <div class="chart-wrapper">
+                <div
+                  id="home_chart_widget_4"
+                  class="home_chart_widget chart-four"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-xl-12 col-xxl-12">
+        <div class="row">
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card vertical-card__menu">
+              <div class="card-header p-0">
+                <div class="vertical-card__menu--image">
+                  <img
+                    src="./assets/images/menu/granny-menu10.jpeg"
+                    alt="Menu"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="vertical-card__menu--desc">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="vertical-card__menu--title">French Crostini</h5>
+                    <h4>
+                      <span class="badge badge-primary">$ 54</span>
+                    </h4>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center mt-2"
+                  >
+                    <p class="mb-0">
+                      <span>Ordered:</span>
+                      <strong class="text-dark">179</strong>
+                    </p>
+                    <p class="mb-0">
+                      <span>Revenue:</span>
+                      <strong class="text-dark">$1300</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card vertical-card__menu">
+              <div class="card-header p-0">
+                <div class="vertical-card__menu--image">
+                  <img
+                    src="./assets/images/menu/granny-menu11.jpeg"
+                    alt="Menu"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="vertical-card__menu--desc">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="vertical-card__menu--title m-0">
+                      Fried Egg Sandwich
+                    </h5>
+                    <h4>
+                      <span class="badge badge-primary">$ 54</span>
+                    </h4>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center mt-2"
+                  >
+                    <p class="mb-0">
+                      <span>Ordered:</span>
+                      <strong class="text-dark">179</strong>
+                    </p>
+                    <p class="mb-0">
+                      <span>Revenue:</span>
+                      <strong class="text-dark">$1300</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card vertical-card__menu">
+              <div class="card-header p-0">
+                <div class="vertical-card__menu--image">
+                  <img
+                    src="./assets/images/menu/granny-menu12.jpeg"
+                    alt="Menu"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="vertical-card__menu--desc">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="vertical-card__menu--title m-0">
+                      Pizza Hot Chilli
+                    </h5>
+                    <h4>
+                      <span class="badge badge-primary">$ 54</span>
+                    </h4>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center mt-2"
+                  >
+                    <p class="mb-0">
+                      <span>Ordered:</span>
+                      <strong class="text-dark">179</strong>
+                    </p>
+                    <p class="mb-0">
+                      <span>Revenue:</span>
+                      <strong class="text-dark">$1300</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xxl-3 col-xl-3">
+            <div class="card vertical-card__menu">
+              <div class="card-header p-0">
+                <div class="vertical-card__menu--image">
+                  <img
+                    src="./assets/images/menu/granny-menu13.jpeg"
+                    alt="Menu"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="vertical-card__menu--desc">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="vertical-card__menu--title m-0">Lemon Yogurt</h5>
+                    <h4>
+                      <span class="badge badge-primary">$ 54</span>
+                    </h4>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center mt-2"
+                  >
+                    <p class="mb-0">
+                      <span>Ordered:</span>
+                      <strong class="text-dark">179</strong>
+                    </p>
+                    <p class="mb-0">
+                      <span>Revenue:</span>
+                      <strong class="text-dark">$1300</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+<%- include('../layouts/footer') %>

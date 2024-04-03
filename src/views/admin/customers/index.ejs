@@ -1,0 +1,116 @@
+<%- include('../layouts/header') %>
+<style>
+  .table-responsive tr img.profile {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #afb4b9;
+    padding: 2px;
+  }
+</style>
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col-sm-12 p-md-0 mt-2 mt-sm-0 d-flex">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/admin/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="javascript:void(0)">Customers</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-between mb-3">
+      <div class="col-12 text-left">
+        <h2 class="page-heading">Customers</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="display">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Profile</th>
+                    <th>Full Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Registered date</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="./assets/plugins/common/common.min.js"></script>
+<script>
+  $(document).ready(function () {
+    let table = $("#example").DataTable({
+      searching: true,
+      responsive: true,
+      autoWidth: false,
+      processing: true,
+      // serverSide: true,
+      order: [[0, "desc"]],
+      lengthMenu: [
+        [10, 25, 100, 250, 500, -1],
+        [10, 25, 100, 250, 500, "All"],
+      ],
+      ajax: {
+        type: "GET",
+        url: "/admin/customers",
+        dataSrc: "data",
+        error: function (response) {
+          console.log(response);
+        },
+      },
+      columns: [
+        { data: "id" },
+        {
+          mRender: function (data, type, row) {
+            return `<img class="profile" src= "../${
+              row.profileImage ? row.profileImage : "../user-avtaar.png"
+            }"  >`;
+          },
+        },
+        {
+          data: null,
+          render: function (data, type, row) {
+            return row.firstName + " " + row.lastName;
+          },
+        },
+        { data: "phone" },
+        { data: "email" },
+        {
+          data: "createdAt",
+          render: function (data) {
+            var date = new Date(data);
+            var month = date.getMonth() + 1;
+            return (
+              date.getDate() +
+              "/" +
+              (month.toString().length > 1 ? month : "0" + month) +
+              "/" +
+              date.getFullYear()
+            );
+          },
+        },
+      ],
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [1, 5],
+        },
+      ],
+    });
+  });
+</script>
+<%- include('../layouts/footer') %>
